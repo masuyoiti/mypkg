@@ -8,14 +8,19 @@
 
 # 各ファイルの説明
 - package.xml
+
 モジュール登録に用いたファイルです。
 - setup.py
+
 スクリプトの登録や```launch/talk_listen.launch.py```でノードを纏める時に使ったファイルです.
 - .github/workflow/test.yml
+
 テストバッジのプログラムです。
 - test/test.bash
+
 ```talker.py```と```listener.py```が正常に通信できているかについてのテストプログラムです。
 - launch/talk_listen.launch.py
+
 ```talker.py```と```listener.py```の２つのノードを同時に実行できるノードです。
 また、実行するには以下のコマンドを実行してください。終了には```Ctrl+C```を入力してください。
 # リポジトリのクローン方法
