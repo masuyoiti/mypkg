@@ -7,7 +7,7 @@
 - 実行方法
 
 # 各ファイルの説明
-- package.xml
+* **package.xml**
     モジュール登録に用いたファイルです。
 - setup.py
     スクリプトの登録や```launch/talk_listen.launch.py```でノードを纏める時に使ったファイルです.
