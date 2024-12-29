@@ -1,20 +1,27 @@
 import rclpy
 from rclpy.node import Node
-from person_msgs.msg import Person
+from std_msgs.msg import String
 
-class Listener(Node):
+class ResourceListener(Node):
     def __init__(self):
-        super().__init__('listener')
-        self.sub = self.create_subscription(Person, 'person', self.cb, 10)
+        super().__init__('resource_listener')
+        self.subscription = self.create_subscription(
+            String,
+            'system_resources',
+            self.listener_callback,
+            10)
+        self.subscription  # サブスクリプション変数を保持
 
-    def cb(self, msg):
-        self.get_logger().info(f'Listen: {msg.name}, Age: {msg.age}')
+    def listener_callback(self, msg):
+        self.get_logger().info(f"Received: {msg.data}")
 
 def main(args=None):
     rclpy.init(args=args)
-    node = Listener()
+    node = ResourceListener()
     rclpy.spin(node)
+    node.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
+
