@@ -6,8 +6,15 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: build and test
+      - name: Ensure directories and permissions
+        run: |
+          mkdir -p /root/ros2_ws/src/mypkg
+          chmod +x ./src/mypkg/test/test.bash
+      - name: Sync files
         run: |
           rsync -av ./ /root/ros2_ws/src/mypkg/
+      - name: Build and Test
+        run: |
           cd /root/ros2_ws
-          bash -xv ./src/mypkg/test/test.bash /root
+          bash ./src/mypkg/test/test.bash /root
+
