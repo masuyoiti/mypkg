@@ -18,13 +18,13 @@ setup(
     zip_safe=True,
     maintainer='Youichi Masuyama',
     maintainer_email='yaiti0212@gmail.com',
-    description='a package for practice',
+    description='A package for monitoring system resources',
     license='BSD-3-Clause',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'talker = mypkg.talker:main',
-            'listener = mypkg.listener:main',
+            'resource_monitor = mypkg.resource_monitor:main',
         ],
     },
 )
+
