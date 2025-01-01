@@ -6,9 +6,19 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
-      - name: build and test
+      - name: Install dependencies
         run: |
+          apt-get update
+          apt-get install -y python3-pip
+          pip install psutil
+      - name: Sync files and build
+        run: |
+          mkdir -p /root/ros2_ws/src/mypkg
           rsync -av ./ /root/ros2_ws/src/mypkg/
+          cd /root/ros2_ws
+          colcon build
+      - name: Run tests
+        run: |
           cd /root/ros2_ws
           bash -xv ./src/mypkg/test/test.bash /root
 

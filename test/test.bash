@@ -4,8 +4,8 @@ dir=~
 [ "$1" != "" ] && dir="$1"
 
 cd $dir/ros2_ws
+source install/setup.bash  # ROS 2 ワークスペースの環境を明示的に設定
 colcon build
-source $dir/.bashrc
 
 # ノードを起動してログを確認
 timeout 10 ros2 run mypkg resource_monitor > /tmp/mypkg.log
