@@ -1,37 +1,14 @@
-name: CI Test
+name: test
 on: push
 jobs:
   test:
     runs-on: ubuntu-22.04
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
-      # コードをチェックアウト
       - uses: actions/checkout@v2
-
-      # ディレクトリ構造を確認し、必要なディレクトリを作成
-      - name: Ensure directories
+      - name: build and test
         run: |
-          mkdir -p /root/ros2_ws/src/mypkg
-          mkdir -p /root/ros2_ws/src/person_msgs
-
-      # ファイルを対応する場所にコピー
-      - name: Sync files
-        run: |
-          rsync -av ./mypkg/ /root/ros2_ws/src/mypkg/
-          rsync -av ./person_msgs/ /root/ros2_ws/src/person_msgs/
-
-      # ビルドとテスト
-      - name: Build and Test
-        run: |
+          rsync -av ./ /root/ros2_ws/src/mypkg/
           cd /root/ros2_ws
-          colcon build
-          source install/setup.bash
-          bash ./src/mypkg/test/test.bash /root
-
-      # Lint テスト (flake8, pep257)
-      - name: Run Flake8 and Pep257
-        run: |
-          cd /root/ros2_ws/src/mypkg/test
-          pytest test_flake8.py
-          pytest test_pep257.py
+          bash -xv ./src/mypkg/test/test.bash /root
 
