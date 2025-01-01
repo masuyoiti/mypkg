@@ -24,7 +24,7 @@ jobs:
           colcon build
         shell: bash
 
-      # テストスクリプトの実行
+      # テストスクリプトを実行
       - name: Run tests
         run: |
           cd /root/ros2_ws
