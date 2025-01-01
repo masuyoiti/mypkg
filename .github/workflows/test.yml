@@ -22,12 +22,12 @@ jobs:
           cd /root/ros2_ws
           source /opt/ros/humble/setup.bash
           colcon build
-        shell: bash  # 明示的に Bash を使用
+        shell: bash
 
-      # テストスクリプトを実行
+      # テストスクリプトの実行
       - name: Run tests
         run: |
           cd /root/ros2_ws
           bash -xv ./src/mypkg/test/test.bash /root
-        shell: bash  # 明示的に Bash を使用
+        shell: bash
 
