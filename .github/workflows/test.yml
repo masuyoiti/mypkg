@@ -6,17 +6,27 @@ jobs:
     container: ryuichiueda/ubuntu22.04-ros2:latest
     steps:
       - uses: actions/checkout@v2
+
+      # 必要なパッケージのインストール
       - name: Install dependencies
         run: |
           apt-get update
           apt-get install -y python3-pip
           pip install psutil
+
+      # ファイルを同期
       - name: Sync files and build
         run: |
           mkdir -p /root/ros2_ws/src/mypkg
           rsync -av ./ /root/ros2_ws/src/mypkg/
           cd /root/ros2_ws
+          source /opt/ros/humble/setup.bash
           colcon build
+
+      # テストスクリプトの実行
+      - name: Ensure test script is executable
+        run: chmod +x ./src/mypkg/test/test.bash
+
       - name: Run tests
         run: |
           cd /root/ros2_ws

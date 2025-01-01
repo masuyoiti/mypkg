@@ -4,7 +4,11 @@ dir=~
 [ "$1" != "" ] && dir="$1"
 
 cd $dir/ros2_ws
-source install/setup.bash  # ROS 2 ワークスペースの環境を明示的に設定
+
+# ROS 2 環境の初期化
+source /opt/ros/humble/setup.bash  # ROS 2 Humble を使用している場合
+source install/setup.bash          # ROS 2 ワークスペースの環境を追加
+
 colcon build
 
 # ノードを起動してログを確認
