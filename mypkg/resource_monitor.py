@@ -17,6 +17,8 @@ class ResourceMonitor(Node):
             message = String()
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
+            print(f"Publishing: {message.data}")  # コンソールに出力
+
             if rclpy.ok():  # コンテキストが有効な場合のみ実行
                 self.publisher_.publish(message)
         except Exception as e:
@@ -26,6 +28,7 @@ class ResourceMonitor(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = ResourceMonitor()
+    print("ResourceMonitor node started.")  # ノード起動時の確認メッセージ
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
