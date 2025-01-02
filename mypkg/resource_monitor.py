@@ -18,10 +18,9 @@ class ResourceMonitor(Node):
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
             self.publisher_.publish(message)
-            self.get_logger().info(f"Published: {message.data}")
         except Exception as e:
-            self.get_logger().error(f"Error publishing system resources: {e}")
-
+            if rclpy.ok():
+                self.get_logger().error(f"Error publishing system resources: {e}")
 def main(args=None):
     rclpy.init(args=args)
     node = ResourceMonitor()
@@ -32,8 +31,9 @@ def main(args=None):
     except Exception as e:
         node.get_logger().error(f"Error during spin: {e}")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():  # シャットダウンがまだ呼び出されていない場合のみ実行
+            node.destroy_node()
+            rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
