@@ -38,6 +38,13 @@ if ! grep 'Published:' /tmp/mypkg.log; then
   exit 1
 fi
 
+if ! [ -f /opt/ros/humble/setup.bash ]; then
+  echo "ERROR: ROS 2 setup.bash not found. Please ensure ROS 2 Humble is installed."
+  exit 1
+fi
+source /opt/ros/humble/setup.bash
+
+
 echo "Test completed successfully."
 exit 0
 

@@ -18,10 +18,10 @@ class ResourceMonitor(Node):
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
             if rclpy.ok():  # コンテキストが有効な場合のみ実行
-            self.publisher_.publish(message)
-    except Exception as e:
-        if rclpy.ok():  # コンテキストが有効な場合のみエラーをログ出力
-            self.get_logger().error(f"Error publishing system resources: {e}")
+                self.publisher_.publish(message)
+        except Exception as e:
+            if rclpy.ok():  # コンテキストが有効な場合のみエラーをログ出力
+                self.get_logger().error(f"Error publishing system resources: {e}")
 
 def main(args=None):
     rclpy.init(args=args)
