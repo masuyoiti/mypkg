@@ -17,10 +17,12 @@ class ResourceMonitor(Node):
             message = String()
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
+            if rclpy.ok():  # コンテキストが有効な場合のみ実行
             self.publisher_.publish(message)
-        except Exception as e:
-            if rclpy.ok():
-                self.get_logger().error(f"Error publishing system resources: {e}")
+    except Exception as e:
+        if rclpy.ok():  # コンテキストが有効な場合のみエラーをログ出力
+            self.get_logger().error(f"Error publishing system resources: {e}")
+
 def main(args=None):
     rclpy.init(args=args)
     node = ResourceMonitor()
@@ -29,7 +31,7 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     except Exception as e:
-        node.get_logger().error(f"Error during spin: {e}")
+        print(f"Error during spin: {e}")
     finally:
         if rclpy.ok():  # シャットダウンがまだ呼び出されていない場合のみ実行
             node.destroy_node()
