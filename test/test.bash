@@ -6,7 +6,7 @@ dir=~
 cd $dir/ros2_ws
 
 # ROS 2 Humble 環境の初期化
-if ! source /opt/ros/jazzy/setup.bash; then
+if ! source /opt/ros/humble/setup.bash; then
   echo "ERROR: Failed to source ROS 2 setup.bash."
   exit 1
 fi
