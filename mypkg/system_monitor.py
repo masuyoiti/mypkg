@@ -1,6 +1,6 @@
-import rclpy
 from rclpy.node import Node
 import psutil
+import rclpy
 from std_msgs.msg import String
 
 class ResourceMonitor(Node):

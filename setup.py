@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'resource_monitor = mypkg.system_monitor:main',
+            'system_monitor = mypkg.system_monitor:main',  # エントリポイントの設定
         ],
     },
 )
