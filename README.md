@@ -47,11 +47,11 @@ Ubuntu 22.04 LTS
 
 [ハードウェア情報の取得の方法](https://chantastu.hatenablog.com/entry/2023/07/15/114657#2-CPU%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97)
 
-[ネットワーク通信速度の計算](https://mathwords.net/bps)
+[bpsの意味と、通信速度や転送時間の計算方法](https://mathwords.net/bps)
 
-[ネットワーク通信速度の計算](https://www.sumappu.com/post-410/#)
+[ネットワーク　伝送速度の考え方](https://www.sumappu.com/post-410/#)
 
-[ネットワーク通信速度の計算](https://itmanabi.com/network-speed/)
+[ネットワークの回線速度と帯域と伝送効率、伝送時間の関係](https://itmanabi.com/network-speed/)
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
 
