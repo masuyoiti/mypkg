@@ -17,7 +17,7 @@ class ResourceMonitor(Node):
             message = String()
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
-            # コンソールに出力 (ROS 2 ログを使用)
+            ## コンソールに出力 (ROS 2 ログを使用)
             self.get_logger().info(f"Publishing: {message.data}")
             #print(f"Publishing: {message.data}")  # コンソールに出力
 
