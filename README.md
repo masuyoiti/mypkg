@@ -44,7 +44,9 @@
 Ubuntu 22.04 LTS
 ## 参考資料
 [ユーザー情報の取得の方法](https://kamedassou.com/python_os_cpu_disk_infomation/)
+
 [ハードウェア情報の取得の方法](https://chantastu.hatenablog.com/entry/2023/07/15/114657#2-CPU%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97)
+
 [通信速度の計算](https://mathwords.net/bps)
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
