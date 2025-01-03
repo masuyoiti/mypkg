@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Youichi Masuyama <yaiti0212@gmail.com>
+# SPDX-License-Identifier: BSD-3-Clause
+
+
 from rclpy.node import Node
 import psutil
 import rclpy
