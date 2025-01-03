@@ -5,8 +5,8 @@ dir=~
 
 cd $dir/ros2_ws
 
-# ROS 2 Humble 環境の初期化
-if ! source /opt/ros/humble/setup.bash; then
+# ROS 2 jazzy 環境の初期化
+if ! source /opt/ros/jazzy/setup.bash; then
   echo "ERROR: Failed to source ROS 2 setup.bash."
   exit 1
 fi
@@ -31,19 +31,12 @@ if ! timeout 10 ros2 run mypkg resource_monitor > /tmp/mypkg.log; then
 fi
 
 # ログの確認
-if ! grep 'Published:' /tmp/mypkg.log; then
+if ! grep 'Publishing:' /tmp/mypkg.log; then
   echo "ERROR: Expected output not found in /tmp/mypkg.log."
   echo "Contents of /tmp/mypkg.log:"
   cat /tmp/mypkg.log
   exit 1
 fi
-
-if ! [ -f /opt/ros/humble/setup.bash ]; then
-  echo "ERROR: ROS 2 setup.bash not found. Please ensure ROS 2 Humble is installed."
-  exit 1
-fi
-source /opt/ros/humble/setup.bash
-
 
 echo "Test completed successfully."
 exit 0

@@ -17,7 +17,9 @@ class ResourceMonitor(Node):
             message = String()
             message.data = f"CPU: {cpu_usage}%, Memory: {memory.percent}%"
 
-            print(f"Publishing: {message.data}")  # コンソールに出力
+            # コンソールに出力 (ROS 2 ログを使用)
+            self.get_logger().info(f"Publishing: {message.data}")
+            #print(f"Publishing: {message.data}")  # コンソールに出力
 
             if rclpy.ok():  # コンテキストが有効な場合のみ実行
                 self.publisher_.publish(message)
