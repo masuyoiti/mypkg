@@ -12,7 +12,7 @@ colcon build
 source $dir/.bashrc
 
 # ノードを起動してログを確認
-timeout 60 ros2 run mypkg resource_monitor > /tmp/mypkg.log
+timeout 60 ros2 run mypkg system_monitor > /tmp/mypkg.log
 
 # トピック名や出力内容を正確に確認
 cat /tmp/mypkg.log |
