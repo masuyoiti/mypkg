@@ -15,9 +15,8 @@ jobs:
           sudo apt update
           sudo apt install -y ros-humble-desktop python3-colcon-common-extensions
       - name: Build and Test
-        shell: bash
         run: |
-          source /opt/ros/humble/setup.bash
+          . /opt/ros/humble/setup.bash
           colcon build
           timeout 60 ros2 run mypkg resource_monitor > /tmp/mypkg.log
           grep 'Published:' /tmp/mypkg.log
