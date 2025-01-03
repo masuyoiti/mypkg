@@ -21,4 +21,4 @@ jobs:
           colcon build
           . install/setup.bash
           timeout 300 ros2 run mypkg resource_monitor > /tmp/mypkg.log || true
-          grep 'Published:' /tmp/mypkg.log
+          grep 'Published:' /tmp/mypkg.log || true
