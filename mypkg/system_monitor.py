@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2024 Youichi Masuyama <yaiti0212@gmail.com> 
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: BSD-3-Clause 
 
 from rclpy.node import Node
 import psutil
@@ -24,6 +24,10 @@ class ResourcePublisher(Node):
             current_time = time.time()
             elapsed_time = current_time - self.prev_time
 
+            # timeがあまりに小さい（1秒未満）場合、1秒にして計算を安定化
+            if elapsed_time < 1:
+                elapsed_time = 1
+
             # システムリソース
             cpu_usage = psutil.cpu_percent(interval=None)  # CPU使用率
             memory = psutil.virtual_memory()  # メモリ情報
@@ -38,8 +42,7 @@ class ResourcePublisher(Node):
             net_sent = (current_net_io.bytes_sent - self.prev_net_io.bytes_sent) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
             net_recv = (current_net_io.bytes_recv - self.prev_net_io.bytes_recv) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
 
-            # メモリ使用量と容量をMB単位で計算
-            memory_total_mb = memory.total / (1024 * 1024)  # MB
+            # メモリ使用量をMB単位で計算（totalは表示しない）
             memory_mb = memory.used / (1024 * 1024)  # MB
             memory_free_mb = memory.free / (1024 * 1024)  # MB
             memory_available_mb = memory.available / (1024 * 1024)  # MB
@@ -47,7 +50,7 @@ class ResourcePublisher(Node):
             # メッセージ
             message = (
                 f"CPU: {cpu_usage:.1f}%, "
-                f"Memory: {memory_mb:.2f}MB / {memory_total_mb:.2f}MB total, "
+                f"Memory: {memory_mb:.2f}MB, "
                 f"Disk Read: {disk_read:.2f} MB/s, "
                 f"Disk Write: {disk_write:.2f} MB/s, "
                 f"Net Sent: {net_sent:.2f} Mbps, "
