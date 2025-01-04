@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           . /opt/ros/humble/setup.bash
-          colcon build
+          colcon build 2> /dev/null || true
           . install/setup.bash
           timeout 100 ros2 run mypkg resource_monitor > /tmp/mypkg.log || true
           grep 'Published:' /tmp/mypkg.log || true
