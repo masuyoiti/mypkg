@@ -87,8 +87,9 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 - psutil
 ## テスト環境
 - Ubuntu 22.04 LTS
+    - ROS 2 Humble(GitHub Actions)
 - Ubuntu 24.04 LTS
-- ROS 2バージョン：humble, jazzy
+    - ROS 2 jazzy(開発環境)
 ## 参考資料
 [ユーザー情報の取得の方法](https://kamedassou.com/python_os_cpu_disk_infomation/)
 
@@ -101,7 +102,8 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 [ネットワークの回線速度と帯域と伝送効率、伝送時間の関係](https://itmanabi.com/network-speed/)
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
-
+- このパッケージのコードの一部は、下記のスライド（CC-BY-SA 4.0 by Ryuichi Ueda）のものを本人の許可を得て自身の著作としたものです。
+    - (https://github.com/ryuichiueda/mypkg)
 詳細は LICENSE ファイルを参照してください。
 
 © 2025 Youichi Masuyama
