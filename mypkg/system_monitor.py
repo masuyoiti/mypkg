@@ -6,11 +6,10 @@ import psutil
 import rclpy
 from std_msgs.msg import String
 import time
-from colorama import Fore, Style
 
-class ResourceMonitor(Node):
+class ResourcePublisher(Node):
     def __init__(self):
-        super().__init__('resource_monitor')
+        super().__init__('resource_publisher')
         self.publisher_ = self.create_publisher(String, 'system_resources', 10)
         self.timer = self.create_timer(1.0, self.publish_resource_usage)
 
@@ -31,30 +30,29 @@ class ResourceMonitor(Node):
 
             # ディスク使用率の計算
             current_disk_io = psutil.disk_io_counters()
-            disk_read = (current_disk_io.read_bytes - self.prev_disk_io.read_bytes) / (1024 * 1024 * elapsed_time)
-            disk_write = (current_disk_io.write_bytes - self.prev_disk_io.write_bytes) / (1024 * 1024 * elapsed_time)
+            disk_read = (current_disk_io.read_bytes - self.prev_disk_io.read_bytes) / (1024 * 1024 * elapsed_time)  # MB/s
+            disk_write = (current_disk_io.write_bytes - self.prev_disk_io.write_bytes) / (1024 * 1024 * elapsed_time)  # MB/s
 
             # ネットワーク速度の計算
             current_net_io = psutil.net_io_counters()
-            net_sent = (current_net_io.bytes_sent - self.prev_net_io.bytes_sent) * 8 / (1024 * 1024 * elapsed_time)
-            net_recv = (current_net_io.bytes_recv - self.prev_net_io.bytes_recv) * 8 / (1024 * 1024 * elapsed_time)
+            net_sent = (current_net_io.bytes_sent - self.prev_net_io.bytes_sent) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
+            net_recv = (current_net_io.bytes_recv - self.prev_net_io.bytes_recv) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
 
-            # 色付きのメッセージ
-            colored_message = (
-                f"{Fore.RED}CPU: {cpu_usage}%{Style.RESET_ALL}, "
-                f"{Fore.BLUE}Memory: {memory.percent}%{Style.RESET_ALL}, "
-                f"{Fore.GREEN}Disk Read: {disk_read:.2f} MB/s{Style.RESET_ALL}, "
-                f"{Fore.YELLOW}Disk Write: {disk_write:.2f} MB/s{Style.RESET_ALL}, "
-                f"{Fore.MAGENTA}Net Sent: {net_sent:.2f} Mbps{Style.RESET_ALL}, "
-                f"{Fore.CYAN}Net Recv: {net_recv:.2f} Mbps{Style.RESET_ALL}"
+            # メッセージ
+            message = (
+                f"CPU: {cpu_usage:.1f}%, "
+                f"Memory: {memory.percent:.1f}%, "
+                f"Disk Read: {disk_read:.2f} MB/s, "
+                f"Disk Write: {disk_write:.2f} MB/s, "
+                f"Net Sent: {net_sent:.2f} Mbps, "
+                f"Net Recv: {net_recv:.2f} Mbps"
             )
-            print(f"Publishing: {colored_message}")
 
             # メッセージを発行
-            message = String()
-            message.data = colored_message  # 色付きでないデータを使用する場合は変換が必要
+            msg = String()
+            msg.data = message
             if rclpy.ok():
-                self.publisher_.publish(message)
+                self.publisher_.publish(msg)
 
             # 状態を更新
             self.prev_disk_io = current_disk_io
@@ -65,11 +63,10 @@ class ResourceMonitor(Node):
             if rclpy.ok():
                 self.get_logger().error(f"Error publishing system resources: {e}")
 
-
 def main(args=None):
     rclpy.init(args=args)
-    node = ResourceMonitor()
-    print("ResourceMonitor node started.")  # ノード起動時の確認メッセージ
+    node = ResourcePublisher()
+    print("ResourcePublisher node started. Publishing system resources to 'system_resources' topic.")  # パブリッシャ起動時の確認メッセージ
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
@@ -81,7 +78,5 @@ def main(args=None):
             node.destroy_node()
             rclpy.shutdown()
 
-
 if __name__ == '__main__':
     main()
-
