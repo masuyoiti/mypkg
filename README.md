@@ -100,7 +100,7 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
 - このパッケージのコードの一部は、下記のスライド（CC-BY-SA 4.0 by Ryuichi Ueda）のものを本人の許可を得て自身の著作としたものです。
-    - (https://github.com/ryuichiueda/mypkg)
+    - https://github.com/ryuichiueda/mypkg
 
 詳細は LICENSE ファイルを参照してください。
 
