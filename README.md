@@ -81,7 +81,7 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 
 ## 必要なソフトウェア
 - ros2：
- - 使用バージョン：jazzy,humble
+    - 使用バージョン：jazzy,humble
 - psutil
 ## テスト環境
 - Ubuntu 24.04 LTS
