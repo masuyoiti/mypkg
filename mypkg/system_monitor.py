@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Youichi Masuyama <yaiti0212@gmail.com>
+# SPDX-FileCopyrightText: 2024 Youichi Masuyama <yaiti0212@gmail.com> 
 # SPDX-License-Identifier: BSD-3-Clause
 
 from rclpy.node import Node
@@ -38,10 +38,16 @@ class ResourcePublisher(Node):
             net_sent = (current_net_io.bytes_sent - self.prev_net_io.bytes_sent) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
             net_recv = (current_net_io.bytes_recv - self.prev_net_io.bytes_recv) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
 
+            # メモリ使用量と容量をMB単位で計算
+            memory_total_mb = memory.total / (1024 * 1024)  # MB
+            memory_mb = memory.used / (1024 * 1024)  # MB
+            memory_free_mb = memory.free / (1024 * 1024)  # MB
+            memory_available_mb = memory.available / (1024 * 1024)  # MB
+
             # メッセージ
             message = (
                 f"CPU: {cpu_usage:.1f}%, "
-                f"Memory: {memory.percent:.1f}%, "
+                f"Memory: {memory_mb:.2f}MB / {memory_total_mb:.2f}MB total, "
                 f"Disk Read: {disk_read:.2f} MB/s, "
                 f"Disk Write: {disk_write:.2f} MB/s, "
                 f"Net Sent: {net_sent:.2f} Mbps, "
@@ -80,3 +86,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
