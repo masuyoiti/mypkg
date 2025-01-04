@@ -81,7 +81,6 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 - ネットワーク依存: ネットワーク環境によっては、ネットワーク速度の値が一時的に不正確になる可能性があります。
 - 高負荷時のパフォーマンス: システム負荷が極端に高い場合、リソース取得に遅延が発生する可能性があります。 
 
-- psutil
 ## テスト環境
 - Ubuntu 22.04 LTS
     - ROS 2 Humble(GitHub Actions)
