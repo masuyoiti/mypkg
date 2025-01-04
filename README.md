@@ -10,7 +10,6 @@
 - **ディスクI/O**: ディスクの読み取り・書き込み速度（MB/s）
 - **ネットワークI/O**: ネットワーク送信・受信速度（Mbps）
 
-これにより、システムリソースのリアルタイム監視が可能になります。
 
 ## インストール方法
 
@@ -25,7 +24,7 @@
    - このリポジトリをROS 2ワークスペースの `src` フォルダにクローンします。
      ```bash
      cd ~/ros2_ws/src
-     git clone <repository_url>
+     git clone https://github.com/masuyoiti/mypkg.git
      ```
 
 3. **パッケージをビルド**:
@@ -40,12 +39,15 @@
      ```
 
 ## 使用方法
-1. ノードを起動: ROS 2ワークスペースをソースした後、以下のコマンドで`ResourcePublisher`ノードを起動します。
+
+1. **ノードを起動**
+   ROS 2ワークスペースをソースした後、以下のコマンドで`ResourcePublisher`ノードを起動します。
      ```bash
      ros2 run mypkg system_monitor
      ```
 
-2. サブスクライブするトピック: ノードは、システムリソース情報を `system_resources`というトピックに発行します。このトピックを`ros2 topic echo`コマンドで確認できます。
+2. **サブスクライブするトピック**
+   ノードは、システムリソース情報を `system_resources`というトピックに発行します。このトピックを`ros2 topic echo`コマンドで確認できます。
      ```bash
      ros2 topic echo /system_resources
      ```
@@ -73,11 +75,17 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 - ROS 2: ROS 2 環境でノードを実行するために必要です。
 - psutil: システムとプロセスの情報を取得するためのPythonライブラリ。CPU、メモリ、ディスクI/O、ネットワークI/Oなどの情報を提供します。
 
+## 注意事項
+- ネットワーク依存: ネットワーク環境によっては、ネットワーク速度の値が一時的に不正確になる可能性があります。
+- 高負荷時のパフォーマンス: システム負荷が極端に高い場合、リソース取得に遅延が発生する可能性があります。 
+
 ## 必要なソフトウェア
-- ros2
- - 使用バージョン：jazzy
+- ros2：
+ - 使用バージョン：jazzy,humble
+- psutil
 ## テスト環境
-Ubuntu 24.04 LTS
+- Ubuntu 24.04 LTS
+- ROS 2バージョン: jazzy, humble
 ## 参考資料
 [ユーザー情報の取得の方法](https://kamedassou.com/python_os_cpu_disk_infomation/)
 
@@ -90,6 +98,7 @@ Ubuntu 24.04 LTS
 [ネットワークの回線速度と帯域と伝送効率、伝送時間の関係](https://itmanabi.com/network-speed/)
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
+
 詳細は LICENSE ファイルを参照してください。
 
 © 2025 Youichi Masuyama
