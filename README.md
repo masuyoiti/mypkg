@@ -42,7 +42,15 @@ ros2 topic echo /system_resources
 ```
 # 実行例
 ```
-
+data: 'CPU: 8.4%, Memory: 504.85MB, Disk Read: 2.57 MB/s, Disk Write: 0.00 MB/s, Net Sent: 5.37 Mbps, Net Recv: 5.37 Mbps'
+---
+data: 'CPU: 0.0%, Memory: 504.71MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.30 Mbps, Net Recv: 0.30 Mbps'
+---
+data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
+---
+data: 'CPU: 0.2%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.56 Mbps, Net Recv: 0.56 Mbps'
+---
+data: 'CPU: 0.0%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.28 Mbps, Net Recv: 0.28 Mbps'
 ```
 ## 必要なソフトウェア
 - ros2
