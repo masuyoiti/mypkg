@@ -1,46 +1,56 @@
 # mypkg
+
 - このリポジトリは授業で作成したROS 2のパッケージです。
-- このパッケージはユーザーが使用しているUbuntu(Linux)のCPUの使用率,ディスクとネットワークのi/o速度,PC全体のメモリ使用率を表示するものである。
-# 目次
-- 各ファイルの説明
-- リポジトリのクローン方法
-- 実行方法
+- このパッケージは、ホストマシンのシステムリソースを監視する ROS 2 ノードを提供します。監視するリソースには、CPU使用率、アクティブなメモリ使用量（プロセスによる物理メモリ使用を概算したもの）、ディスクI/O、ネットワークI/Oが含まれます。このノードは、監視した情報を `system_resources` というROS 2トピックに発行します。
 
-# 各ファイルの説明
-- package.xml
+## 機能
 
-    モジュール登録に用いたファイルです。
-- setup.py
+- **CPU使用率**: CPU使用率（%）
+- **アクティブメモリ使用量**: アクティブなプロセスによって使用されている物理メモリ（MB単位）
+- **ディスクI/O**: ディスクの読み取り・書き込み速度（MB/s）
+- **ネットワークI/O**: ネットワーク送信・受信速度（Mbps）
 
-    スクリプトの登録や```launch/talk_listen.launch.py```でノードを纏める時に使ったファイルです。
-- .github/workflow/test.yml
+これにより、システムリソースのリアルタイム監視が可能になります。
 
-    テストバッジのプログラムです。
-- test/test.bash
+## インストール方法
 
-    ```system_monitor```が正常に動作できているかについてのテストプログラムです。
-- launch/talk_listen.launch.py
+1. **必要条件**:
+   - ROS 2(jazzy、humble)をインストールしてください。
+   - システム監視のために `psutil` をインストールしてください。
+     ```bash
+     pip install psutil
+     ```
 
-    ```talker.py```と```listener.py```の２つのノードを同時に実行できるノードです。
-# リポジトリのクローン方法
-以下のコマンドをターミナル上で入力します。
-```
-git clone https://github.com/masuyoiti/mypkg.git
-```
-# 実行方法
-以下のコマンドを1つ目のターミナル上で入力します。
-```
-cd ~/ros2_ws
-colcon build
-source install/setup.bash
-ros2 run mypkg system_monitor
-```
+2. **パッケージをクローン**:
+   - このリポジトリをROS 2ワークスペースの `src` フォルダにクローンします。
+     ```bash
+     cd ~/ros2_ws/src
+     git clone <repository_url>
+     ```
 
-次に以下のコマンドを2つ目のターミナル上で入力します。
-```
-ros2 topic echo /system_resources
-```
-# 実行例
+3. **パッケージをビルド**:
+     ```bash
+     cd ~/ros2_ws
+     colcon build
+     ```
+
+4. **ワークスペースをソース**
+     ```bash
+     source ~/ros2_ws/install/setup.bash
+     ```
+
+## 使用方法
+1. ノードを起動: ROS 2ワークスペースをソースした後、以下のコマンドで`ResourcePublisher`ノードを起動します。
+     ```bash
+     ros2 run mypkg system_monitor
+     ```
+
+2. サブスクライブするトピック: ノードは、システムリソース情報を `system_resources`というトピックに発行します。このトピックを`ros2 topic echo`コマンドで確認できます。
+     ```bash
+     ros2 topic echo /system_resources
+     ```
+
+## 実行例
 ```
 data: 'CPU: 8.4%, Memory: 504.85MB, Disk Read: 2.57 MB/s, Disk Write: 0.00 MB/s, Net Sent: 5.37 Mbps, Net Recv: 5.37 Mbps'
 ---
@@ -48,10 +58,21 @@ data: 'CPU: 0.0%, Memory: 504.71MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s,
 ---
 data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
 ---
-data: 'CPU: 0.2%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.56 Mbps, Net Recv: 0.56 Mbps'
----
-data: 'CPU: 0.0%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.28 Mbps, Net Recv: 0.28 Mbps'
 ```
+
+## ノードの概要
+- ノード名：`resource_publisher`
+- トピック: `/system_resources`
+    - 型: `std_msgs/msg/String`
+
+## コード構成
+- `system_monitor.py`: システムリソースを監視し、定期的に情報をROS 2トピックに発行するメインのPythonスクリプト。`psutil`ライブラリを使用してリソース情報を取得し、1秒ごとに結果を発行します。
+- `requirements.txt`: パッケージのPython依存関係（例:`psutil`）をリストします。
+
+## 依存関係
+- ROS 2: ROS 2 環境でノードを実行するために必要です。
+- psutil: システムとプロセスの情報を取得するためのPythonライブラリ。CPU、メモリ、ディスクI/O、ネットワークI/Oなどの情報を提供します。
+
 ## 必要なソフトウェア
 - ros2
  - 使用バージョン：jazzy
@@ -69,6 +90,6 @@ Ubuntu 24.04 LTS
 [ネットワークの回線速度と帯域と伝送効率、伝送時間の関係](https://itmanabi.com/network-speed/)
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
+詳細は LICENSE ファイルを参照してください。
 
-
-© 2024 Youichi Masuyama
+© 2025 Youichi Masuyama
