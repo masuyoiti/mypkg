@@ -42,7 +42,7 @@ class ResourcePublisher(Node):
             net_sent = (current_net_io.bytes_sent - self.prev_net_io.bytes_sent) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
             net_recv = (current_net_io.bytes_recv - self.prev_net_io.bytes_recv) * 8 / (1024 * 1024 * elapsed_time)  # Mbps
 
-            # メモリ使用量をMB単位で計算（totalは表示しない）
+            # メモリ使用量をMB単位で計算
             memory_mb = memory.used / (1024 * 1024)  # MB
             memory_free_mb = memory.free / (1024 * 1024)  # MB
             memory_available_mb = memory.available / (1024 * 1024)  # MB
