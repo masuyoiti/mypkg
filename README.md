@@ -80,12 +80,15 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 - 高負荷時のパフォーマンス: システム負荷が極端に高い場合、リソース取得に遅延が発生する可能性があります。 
 
 ## 必要なソフトウェア
+- Ubuntu：
+    - 使用バージョン：22.04,24.04
 - ros2：
-    - 使用バージョン：jazzy,humble
+    - 使用バージョン：humble, jazzy
 - psutil
 ## テスト環境
+- Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
-- ROS 2バージョン: jazzy, humble
+- ROS 2バージョン：humble, jazzy
 ## 参考資料
 [ユーザー情報の取得の方法](https://kamedassou.com/python_os_cpu_disk_infomation/)
 
