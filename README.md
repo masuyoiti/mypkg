@@ -28,7 +28,7 @@
 git clone https://github.com/masuyoiti/mypkg.git
 ```
 # 実行方法
-以下のコマンドをターミナル上で入力します。
+以下のコマンドを1つ目のターミナル上で入力します。
 ```
 cd ~/ros2_ws
 colcon build
@@ -36,14 +36,21 @@ source install/setup.bash
 ros2 run mypkg system_monitor
 ```
 
-- 実行例(実際はテキストが着色されています。)
+次に以下のコマンドを2つ目のターミナル上で入力します。
 ```
-ResourceMonitor node started.
-Publishing: CPU: 2.3%, Memory: 8.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.84 Mbps, Net Recv: 0.84 Mbps
-Publishing: CPU: 0.1%, Memory: 8.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps
-Publishing: CPU: 0.0%, Memory: 8.5%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps
-Publishing: CPU: 0.2%, Memory: 8.5%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.28 Mbps, Net Recv: 0.28 Mbps
-Publishing: CPU: 0.1%, Memory: 8.5%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps
+ros2 topic echo /system_resources
+```
+- 実行例
+```
+data: 'CPU: 0.8%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 2.57 Mbps, Net Recv: 2.57 Mbps'
+---
+data: 'CPU: 0.0%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
+---
+data: 'CPU: 0.1%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
+---
+data: 'CPU: 0.0%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.07 MB/s, Net Sent: 0.84 Mbps, Net Recv: 0.84 Mbps'
+---
+data: 'CPU: 0.2%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
 ```
 ## 必要なソフトウェア
 - ros2
