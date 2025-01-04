@@ -1,6 +1,6 @@
 # mypkg
 - このリポジトリは授業で作成したROS 2のパッケージです。
-- このパッケージはユーザーが使用しているPCのUbuntu(Linux)のCPUとメモリの使用率,ディスクとネットワークのi/o速度を表示するものである。
+- このパッケージはユーザーが使用しているUbuntu(Linux)のCPUの使用率,ディスクとネットワークのi/o速度,PC全体のメモリ使用率を表示するものである。
 # 目次
 - 各ファイルの説明
 - リポジトリのクローン方法
@@ -42,15 +42,7 @@ ros2 topic echo /system_resources
 ```
 # 実行例
 ```
-data: 'CPU: 0.8%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 2.57 Mbps, Net Recv: 2.57 Mbps'
----
-data: 'CPU: 0.0%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
----
-data: 'CPU: 0.1%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
----
-data: 'CPU: 0.0%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.07 MB/s, Net Sent: 0.84 Mbps, Net Recv: 0.84 Mbps'
----
-data: 'CPU: 0.2%, Memory: 9.4%, Disk Read: 0.00 MB/s, Disk Write: 0.00 MB/s, Net Sent: 0.00 Mbps, Net Recv: 0.00 Mbps'
+
 ```
 ## 必要なソフトウェア
 - ros2
