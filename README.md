@@ -1,3 +1,5 @@
+[![test](https://github.com/masuyoiti/mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/masuyoiti/mypkg/actions/workflows/test.yml)
+
 # mypkg
 
 - このリポジトリは授業で作成したROS 2のパッケージです。
