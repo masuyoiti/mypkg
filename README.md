@@ -56,7 +56,6 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 
 ## コード構成
 - `system_monitor.py`: システムリソースを監視し、定期的に情報をROS 2トピックに発行するメインのPythonスクリプト。`psutil`ライブラリを使用してリソース情報を取得し、1秒ごとに結果を発行します。
-- `requirements.txt`: パッケージのPython依存関係（例:`psutil`）をリストします。
 
 ## 依存関係
 - ROS 2: ROS 2 環境でノードを実行するために必要です。
