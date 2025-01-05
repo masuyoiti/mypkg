@@ -15,7 +15,7 @@
 
 ## インストール方法
 
-1. **必要条件**:
+- **必要条件**:
    - ROS 2(jazzy、humble)をインストールしてください。
    - システム監視のために `psutil` をインストールしてください。
      ```bash
@@ -24,13 +24,13 @@
 
 ## 使用方法
 
-1. **ノードを起動**
+1. **ノードの起動**
    ROS 2ワークスペースをソースした後、以下のコマンドで`ResourcePublisher`ノードを起動します。
      ```bash
      ros2 run mypkg system_monitor
      ```
 
-2. **サブスクライブするトピック**
+2. **トピックの確認**
    ノードは、システムリソース情報を `system_resources`というトピックに発行します。このトピックを`ros2 topic echo`コマンドで確認できます。
      ```bash
      ros2 topic echo /system_resources
@@ -48,8 +48,11 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 
 ## ノードの概要
 - ノード名：`resource_publisher`
-- トピック: `/system_resources`
-    - 型: `std_msgs/msg/String`
+- システムリソースを監視し、リアルタイムで情報をトピックに配信します。
+
+## トピックとメッセージ
+- トピック名: `/system_resources`
+- メッセージ型: `std_msgs/msg/String`
 
 ## コード構成
 - `system_monitor.py`: システムリソースを監視し、定期的に情報をROS 2トピックに発行するメインのPythonスクリプト。`psutil`ライブラリを使用してリソース情報を取得し、1秒ごとに結果を発行します。
@@ -78,6 +81,7 @@ data: 'CPU: 0.1%, Memory: 504.70MB, Disk Read: 0.00 MB/s, Disk Write: 0.04 MB/s,
 [ネットワーク　伝送速度の考え方](https://www.sumappu.com/post-410/#)
 
 [ネットワークの回線速度と帯域と伝送効率、伝送時間の関係](https://itmanabi.com/network-speed/)
+
 ## ライセンス
 - このソフトウェアパッケージは、 3条項BSDライセンスの下、 再頒布および使用が許可されます。
 - このパッケージのコードの一部は、下記のスライド（CC-BY-SA 4.0 by Ryuichi Ueda）のものを本人の許可を得て自身の著作としたものです。
